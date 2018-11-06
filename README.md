@@ -1,9 +1,10 @@
-# B3603
+# B3606 based on B3603
 
-This project is about reverse engineering the B3603 control board and figuring
+This project is about reverse engineering the B3606 control board and figuring
 out how it works, then it should be possible to create an alternative firmware.
 Either by driving it with another board on the same control points or by
-replacing the original firmware with one of my own.
+replacing the original firmware with one of my own. 
+The difference between B3603 and B3606 is only in converter part.
 
 **Current state**: Working, it is functioning and serially controllable.
 
