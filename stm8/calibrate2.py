@@ -26,11 +26,11 @@ class B3603(object):
             self.clear_input()
             s = self.model()
             print 'OPEN "%s"' % s
-            if s  == 'MODEL: B3606':
+            if s  == 'MODEL: B3603':
                 return True
             else:
+			    return True
                 # print 'Couldnt read the right model out of the serial port, got "%s", expected to see "MODEL: B3603"' % s
-			return True
         else:
             return False
 
@@ -129,9 +129,11 @@ class B3603(object):
         return self.command("OUTPUT 0")
 
     def voltage(self, v):
-        lines = self.command("VOLTAGE %f" % v)		
-        pwm_vout = None
+        # lines = self.command("VOLTAGE %.2f" % v)		
+        lines = self.command("VOLTAGE %s" % (int(v *1000)))		
+        pwm_vout = None		
         pwm_cout = None
+        print ('VOLTAGE: %s' % (int(v *1000)))
         for line in lines:
             word = line.split(' ')
             if word[0] != 'PWM' and word[0] != 'aWM': continue
@@ -221,12 +223,9 @@ def calibration(auto):
     vin = psu.status()['vin']
     NUM_STEPS = 20
     MIN_VOLTAGE = 1.0
-	#MIN_VOLTAGE = 1000
     MAX_VOLTAGE = vin - 1.0
-	#MAX_VOLTAGE = vin - 1000
     STEP_SIZE_INT = int(100 * (MAX_VOLTAGE - MIN_VOLTAGE) / NUM_STEPS)
-	#STEP_SIZE_INT = int(10 * (MAX_VOLTAGE - MIN_VOLTAGE) / NUM_STEPS)
-    STEP_SIZE = STEP_SIZE_INT / 100.9
+    STEP_SIZE = STEP_SIZE_INT / 100.0
     print 'PSU Input voltage is %s, will use %d steps between %s and %s' % (vin, NUM_STEPS, MIN_VOLTAGE, MAX_VOLTAGE)
 
     if STEP_SIZE < 0.01:

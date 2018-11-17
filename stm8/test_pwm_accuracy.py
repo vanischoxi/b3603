@@ -6,7 +6,7 @@ import time
 import csv
 import os
 
-s = serial.Serial('/dev/ttyUSB0', baudrate=38400, bytesize=serial.EIGHTBITS, parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE, timeout=2)
+s = serial.Serial('/dev/ttyS4', baudrate=38400, bytesize=serial.EIGHTBITS, parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE, timeout=2)
 assert s.isOpen()
 
 def get_multimeter_sample():

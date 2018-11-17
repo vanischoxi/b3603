@@ -215,37 +215,38 @@ void process_input()
 	// Eliminate the CR/LF character
 	uart_read_buf[uart_read_len-1] = 0;
 
-//	if (strcmp(uart_read_buf, "MODEL") == 0) {
-//		uart_write_str("MODEL: " MODEL "\r\n");
-//	} else if (strcmp(uart_read_buf, "VERSION") == 0) {
-//		uart_write_str("VERSION: " FW_VERSION "\r\n");
+	//if (strcmp(uart_read_buf, "MODEL") == 0) {
+	//	uart_write_str("MODEL: " MODEL "\r\n");
+	//} else if (strcmp(uart_read_buf, "VERSION") == 0) {
+	//	uart_write_str("VERSION: " FW_VERSION "\r\n");
+	//}
 	if (strcmp(uart_read_buf, "SYSTEM") == 0) {
 		uart_write_str("MODEL: " MODEL "\r\n" "VERSION: " FW_VERSION "\r\n");
 		write_str("NAME: ", cfg_system.name);
 		write_onoff("ONSTARTUP: ", cfg_system.default_on);
 		write_onoff("AUTOCOMMIT: ", cfg_system.autocommit);
 	} else if (strcmp(uart_read_buf, "CALIBRATION") == 0) {
-	//	uart_write_str("CALIBRATE VIN ADC: ");
+		uart_write_str("CALIBRATE VIN ADC: ");
 		uart_write_fixed_point(cfg_system.vin_adc.a);
 		uart_write_ch('/');
 		uart_write_fixed_point(cfg_system.vin_adc.b);
 		uart_write_str("\r\n");
-	//	uart_write_str("CALIBRATE VOUT ADC: ");
+		uart_write_str("CALIBRATE VOUT ADC: ");
 		uart_write_fixed_point(cfg_system.vout_adc.a);
 		uart_write_ch('/');
 		uart_write_fixed_point(cfg_system.vout_adc.b);
 		uart_write_str("\r\n");
-	//	uart_write_str("CALIBRATE COUT ADC: ");
+		uart_write_str("CALIBRATE COUT ADC: ");
 		uart_write_fixed_point(cfg_system.cout_adc.a);
 		uart_write_ch('/');
 		uart_write_fixed_point(cfg_system.cout_adc.b);
 		uart_write_str("\r\n");
-	//	uart_write_str("CALIBRATE VOUT PWM: ");
+		uart_write_str("CALIBRATE VOUT PWM: ");
 		uart_write_fixed_point(cfg_system.vout_pwm.a);
 		uart_write_ch('/');
 		uart_write_fixed_point(cfg_system.vout_pwm.b);
 		uart_write_str("\r\n");
-	//	uart_write_str("CALIBRATE COUT PWM: ");
+		uart_write_str("CALIBRATE COUT PWM: ");
 		uart_write_fixed_point(cfg_system.cout_pwm.a);
 		uart_write_ch('/');
 		uart_write_fixed_point(cfg_system.cout_pwm.b);
